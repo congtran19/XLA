@@ -1,33 +1,29 @@
-import os
-import shutil
-
-def move_data(path) :
-    from pathlib import Path 
+def move_data(path):
+    from pathlib import Path
     current_dir = os.getcwd()
-    print(current_dir)
     
-    # Đường dẫn gốc file tải về
-    source_path = path  
-    data_path = []
-    for f in os.listdir(path):
-        data_path.append(f)
-    print(data_path[-1])
-    images_path = os.path.join(source_path, data_path[-1],"image") 
-    metadata_path = os.path.join(source_path,data_path[0])
-    image_dir = os.path.join(current_dir,"images")
-    print(image_dir)
-    
-    metadata_dir = os.path.join(current_dir,"metadata")
-    print(metadata_dir)
+    source_path = path
 
-    # Copy file về thư mục đang làm
-    shutil.copytree(images_path,image_dir)
-    shutil.copy(metadata_path,metadata_dir)
-    
+    # Tìm thư mục chứa ảnh (tên là "image" hoặc có chứa thư mục "image")
+    image_dir_name = None
+    metadata_file_name = None
+
+    for root, dirs, files in os.walk(source_path):
+        if "image" in dirs:
+            image_dir_name = os.path.join(root, "image")
+        for file in files:
+            if file.endswith(".csv"):
+                metadata_file_name = os.path.join(root, file)
+
+    if not image_dir_name or not metadata_file_name:
+        raise FileNotFoundError("Không tìm thấy ảnh hoặc metadata trong dataset!")
+
+    # Đích đến
+    image_dir = os.path.join(current_dir, "images")
+    metadata_dir = os.path.join(current_dir, "metadata.csv")
+
+    # Di chuyển dữ liệu
+    shutil.copytree(image_dir_name, image_dir, dirs_exist_ok=True)
+    shutil.copy(metadata_file_name, metadata_dir)
 
     return image_dir, metadata_dir
-
-    
-
-    
-    
