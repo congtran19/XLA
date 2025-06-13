@@ -7,6 +7,7 @@ from move_data import move_data
 from read_image import read_image
 from resize_image import resize_all_images
 from gray_images import gray_images
+from Cb_histogram import process_directory_manual
 
 # Tai dataset 
 path = kagglehub.dataset_download("nischaydnk/isic-2018-jpg-224x224-resized")
@@ -28,3 +29,6 @@ images_array_resized = read_image(image_dir=resized_dir)
 print(images_array[1:5])
 
 gray_images()
+
+# Cân bằng histogram
+process_directory_manual(r"E:\BTL_XLA\XLA\gray_images_output", r"E:\BTL_XLA\XLA\histogram_images")
