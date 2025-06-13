@@ -6,7 +6,7 @@ from read_metadata import read_metadata
 from move_data import move_data
 from read_image import read_image
 from resize_image import resize_all_images
-
+from gray_images import gray_images
 
 # Tai dataset 
 path = kagglehub.dataset_download("nischaydnk/isic-2018-jpg-224x224-resized")
@@ -26,3 +26,5 @@ images_array = read_image(image_dir=image_dir)
 images_array_resized = read_image(image_dir=resized_dir)
 
 print(images_array[1:5])
+
+gray_images()
