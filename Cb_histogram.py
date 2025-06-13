@@ -62,4 +62,4 @@ def process_directory_manual(input_dir, output_dir):
     print("Hoàn thành xử lý tất cả ảnh.")
 
 # Ví dụ sử dụng # process_directory_manual("thu_muc_goc", "thu_muc_ket_qua")
-#process_directory_manual(r"E:\BTL_XLA\XLA\images", r"E:\BTL_XLA\XLA\anh_cb")
+#process_directory_manual(r"E:\BTL_XLA\XLA\gray_images_output", r"E:\BTL_XLA\XLA\histogram_images")
