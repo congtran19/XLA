@@ -1,7 +1,7 @@
 import os
 import cv2
 import numpy as np
-
+import matplotlib.pyplot as plt
 def resize_image(image, new_size):
     original_height, original_width = image.shape[:2]
     new_height, new_width = new_size
@@ -22,26 +22,21 @@ def resize_image(image, new_size):
 
     return resized
 
-def resize_all_images(input_folder, output_folder, size=(224, 224), grayscale=False):
-    os.makedirs(output_folder, exist_ok=True)
+def resize_all_images(input_arr, size=(128, 128)):
+    resized_arr=[]
+    resized= np.zeros((128,128),dtype=np.float32)
+    try:
+        for image in input_arr:
+            resized = resize_image(image, size)
+            resized_arr.append(resized)
+    except Exception as e:
+        print(f"Lỗi ảnh : {e}")
 
-    for filename in os.listdir(input_folder):
-        input_path = os.path.join(input_folder, filename)
-        output_path = os.path.join(output_folder, filename)
+    print(len(resized_arr))
+    return resized_arr
 
-        try:
-            if grayscale:
-                img = cv2.imread(input_path, cv2.IMREAD_GRAYSCALE)
-            else:
-                img = cv2.imread(input_path)
-
-            if img is None:
-                print(f"Không đọc được ảnh: {input_path}")
-                continue
-
-            resized = resize_image(img, size)
-            cv2.imwrite(output_path, resized)
-            print(f"Đã resize ảnh: {output_path}")
-
-        except Exception as e:
-            print(f"Lỗi ảnh {input_path}: {e}")
+images_arr = np.load("images_arr.npy")
+resize_arr = resize_all_images(images_arr)
+resized_arr=np.stack(resize_arr, axis=0)
+print(resized_arr.shape)
+np.save('resized_arr',resized_arr)
