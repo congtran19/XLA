@@ -24,7 +24,7 @@ def resize_image(image, new_size):
 
 def resize_all_images(input_arr, size=(128, 128)):
     resized_arr=[]
-    resized= np.zeros((128,128),dtype=np.float32)
+    resized= np.zeros((128,128),dtype=np.uint8)
     try:
         for image in input_arr:
             resized = resize_image(image, size)
@@ -38,5 +38,15 @@ def resize_all_images(input_arr, size=(128, 128)):
 images_arr = np.load("images_arr.npy")
 resize_arr = resize_all_images(images_arr)
 resized_arr=np.stack(resize_arr, axis=0)
+print("Kiểu dữ liệu:", resized_arr.dtype)
 print(resized_arr.shape)
 np.save('resized_arr',resized_arr)
+
+
+
+# a = np.load('resized_arr.npy')
+# print(a.shape)
+
+# plt.figure(figsize=(10,8))
+# plt.imshow(a[0],cmap='gray')
+# plt.show()

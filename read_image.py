@@ -1,7 +1,7 @@
 import cv2
 import os
 import numpy as np
-
+import matplotlib.pyplot as plt
 def read_image(image_dir):
     image_files = sorted(os.listdir(image_dir)) 
     images_path = []
@@ -27,7 +27,7 @@ def read_image(image_dir):
         print("Lỗi khi stack ảnh:", e)
         return None
 
-    images_array = images_array.astype(np.float32)
+    images_array = images_array.astype(np.uint8)
     print("Kích thước mảng:", images_array.shape)
     print("Kiểu dữ liệu:", images_array.dtype)
 
@@ -35,3 +35,6 @@ def read_image(image_dir):
 
 images_array = read_image(image_dir='images')
 np.save('images_arr.npy', images_array)
+
+a = np.load('images_arr.npy')
+print(a.shape)

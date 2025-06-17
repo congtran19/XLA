@@ -36,9 +36,3 @@ def process_directory_manual(input_arr):
 # images_arr = np.load("resized_arr.npy")
 # afterprocessing_arr = process_directory_manual(images_arr)
 # np.save('afterprocessing_arr.npy', afterprocessing_arr)
-
-
-a = np.load('afterprocessing_arr.npy')
-plt.figure(figsize=(10,8))
-plt.imshow(a[0],cmap='gray')
-plt.show()
