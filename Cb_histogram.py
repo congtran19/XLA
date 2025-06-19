@@ -33,6 +33,6 @@ def process_directory_manual(input_arr):
     print("Dtype:", after_processing.dtype)
     return after_processing
 
-# images_arr = np.load("resized_arr.npy")
-# afterprocessing_arr = process_directory_manual(images_arr)
-# np.save('afterprocessing_arr.npy', afterprocessing_arr)
+images_arr = np.load("resized_arr.npy")
+afterprocessing_arr = process_directory_manual(images_arr)
+np.save('afterprocessing_arr.npy', afterprocessing_arr)

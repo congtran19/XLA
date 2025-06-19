@@ -46,7 +46,7 @@ np.save('resized_arr',resized_arr)
 
 # a = np.load('resized_arr.npy')
 # print(a.shape)
-
+#
 # plt.figure(figsize=(10,8))
 # plt.imshow(a[0],cmap='gray')
 # plt.show()

@@ -33,7 +33,7 @@ def read_image(image_dir):
 
     return images_array
 
-images_array = read_image(image_dir='images')
+images_array = read_image(image_dir=r"C:\Users\NguyenNgocHuy\.cache\kagglehub\datasets\nischaydnk\isic-2018-jpg-224x224-resized\versions\2\train-image\image")
 np.save('images_arr.npy', images_array)
 
 a = np.load('images_arr.npy')
